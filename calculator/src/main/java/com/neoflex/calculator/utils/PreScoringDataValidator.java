@@ -1,6 +1,7 @@
 package com.neoflex.calculator.utils;
 
 import com.neoflex.calculator.dtos.LoanStatementRequestDto;
+import com.neoflex.calculator.exceptions.CalculatorException;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -11,7 +12,7 @@ public class PreScoringDataValidator {
     private void validateBirthdate(LoanStatementRequestDto loanStatementRequestDto) {
         int age = Period.between(loanStatementRequestDto.getBirthdate(), LocalDate.now()).getYears();
         if (18 > age) {
-            throw new IllegalArgumentException("Вам нет 18");
+            throw new CalculatorException("Вам нет 18");
         }
     }
 }
